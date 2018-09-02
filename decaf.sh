@@ -23,5 +23,11 @@ echo ":${name}:E::${extension}::${wrapper}:OC" > /etc/binfmt.d/"${name}".conf
 echo "$script" > "$wrapper"
 chmod +x "$wrapper"
 
+# Write message to user
+if [ ! -f "/opt/decaf-1.0.jar" ]; then
+    echo "The decaf reference solution must be placed at: /opt/decaf-1.0.jar"
+    echo "before executing decaf files will be possible"
+fi
+
 # Restart the systemd service
 systemctl restart systemd-binfmt.service
