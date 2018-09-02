@@ -1,0 +1,7 @@
+wrapper_name: decafrun
+extension: decaf
+name: decaf
+interpreter: java -jar /opt/decaf-1.0.jar -i $1
+dependencies:
+  - software: java
+  - file: /opt/decaf-1.0.jar

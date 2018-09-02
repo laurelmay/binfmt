@@ -1,0 +1,6 @@
+wrapper_name: jarwrapper
+extension: jar
+name: jar
+interpreter: 'java -jar "$@"'
+dependencies:
+  - software: java

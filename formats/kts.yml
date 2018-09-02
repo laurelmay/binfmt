@@ -1,0 +1,6 @@
+wrapper_name: ktsrun
+extension: kts
+name: kotlin_script
+interpreter: 'kotlinc -script "$@"'
+dependencies:
+  - software: kotlinc

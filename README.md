@@ -8,9 +8,21 @@ Basically, `binfmt_misc` lets you tell the kernel how to execute a particular
 binary that isn't ELF and that doesn't start with a shebang (`#!`). This means
 you can `./` execute files that you usually wouln't be able to.
 
-The scripts in this directory are what I use to configure `binfmt_misc` on my
-own system. To configure your system for a particular file type, just run the
-correlated script.
+
+## Installing
+
+Run 
+
+```
+sudo ./install.py
+```
+
+which will install all the formats in the `formats/` directory. Warnings may be
+printed during install if dependencies cannot be found; however, the format's
+configs will still be installed.
+
+
+## Using
 
 The files that you run must have the executable bit set.
 
@@ -29,6 +41,7 @@ $ ./cool_app.jar
 ```
 
 of course, `chmod` need only be set the first time the binary is executed.
+
 
 ## Testing
 
