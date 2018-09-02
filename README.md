@@ -4,9 +4,12 @@ The details of `binfmt_misc` are well
 [documented](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/binfmt-misc.rst)
 and
 [discussed](https://blog.jessfraz.com/post/nerd-sniped-by-binfmt_misc/).
+Basically, `binfmt_misc` lets you tell the kernel how to execute a particular
+binary that isn't ELF and that doesn't start with a shebang (`#!`). This means
+you can `./` execute files that you usually wouln't be able to.
 
-The scripts in this directory are what I use to configure `binfmt` on my own
-system. To configure your system for a particular file type, just run the
+The scripts in this directory are what I use to configure `binfmt_misc` on my
+own system. To configure your system for a particular file type, just run the
 correlated script.
 
 The files that you run must have the executable bit set.
