@@ -1,0 +1,3 @@
+def void main() {
+    print_str("Hello, world!\n");
+}

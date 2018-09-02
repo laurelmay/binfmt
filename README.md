@@ -29,3 +29,8 @@ $ ./cool_app.jar
 ```
 
 of course, `chmod` need only be set the first time the binary is executed.
+
+## Testing
+
+After running the script, you should be able to verify that the installation
+worked by running the corresponding file in the `test/` directory.
