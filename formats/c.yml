@@ -1,0 +1,5 @@
+# Self-contained c files -- must not require linking with other object files
+wrapper_name: c_binfmt
+extension: c
+name: c
+interpreter: 'gcc -o /tmp/"$(basename $1 .c)" -O2 --std=c99 -march=native "$1" && /tmp/"$(basename $1 .c)"'
