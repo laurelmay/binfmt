@@ -1,4 +1,5 @@
 wrapper_name: ktsrun
+type: E
 extension: kts
 name: kotlin_script
 interpreter: 'kotlinc -script "$@"'

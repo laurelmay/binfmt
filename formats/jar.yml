@@ -1,4 +1,5 @@
 wrapper_name: jarwrapper
+type: E
 extension: jar
 name: jar
 interpreter: 'java -jar "$@"'

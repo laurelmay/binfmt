@@ -1,4 +1,5 @@
 wrapper_name: decafrun
+type: E
 extension: decaf
 name: decaf
 interpreter: 'java -jar /opt/decaf-1.0.jar -i "$1"'

@@ -48,13 +48,31 @@ def generate_binfmt_config(config):
     :param config: The configuration for the format
     """
 
-    return (
-        ":%s:E::%s::%s/%s:OC"
-        % (
-            config['name'], config['extension'],
-            WRAPPER_DIR, config['wrapper_name']
+    if config['type'] == 'M':
+        config = (
+            ":%s:M:%s:%s:%s:%s:OC"
+            % (
+                config['name'],
+                config['offset'],
+                config['magic'],
+                config['mask'],
+                config['interpreter']
+            )
         )
-    )
+    elif config['type'] == 'E':
+        config = (
+            ":%s:E::%s::%s:OC"
+            % (
+                config['name'],
+                config['extension'],
+                "%s/%s" % (WRAPPER_DIR, config['wrapper_name']),
+            )
+        )
+    else:
+        raise ValueError("%s - Invalid type: %s. Must be E or M"
+                         % (config['name'], config['type']))
+
+    return config
 
 def check_dependencies(config):
     """
@@ -108,13 +126,15 @@ def main():
         exit("This script must be run with root privileges.")
     for config in load_configs():
         print("Installing: %s" % config['name'])
-        wrapper_file = "%s/%s" % (WRAPPER_DIR, config['wrapper_name'])
-        wrapper_contents = generate_wrapper(config)
+        check_dependencies(config)
+        if config['type'] == 'E':
+            wrapper_file = "%s/%s" % (WRAPPER_DIR, config['wrapper_name'])
+            wrapper_contents = generate_wrapper(config)
+            write_wrapper(wrapper_file, wrapper_contents)
+
         binfmt_file = "%s/%s.conf" % (BINFMT_DIR, config['name'])
         binfmt_contents = generate_binfmt_config(config)
-        check_dependencies(config)
         write_binfmt_config(binfmt_file, binfmt_contents)
-        write_wrapper(wrapper_file, wrapper_contents)
     subprocess.call(['systemctl', 'restart', 'systemd-binfmt.service'])
 
 

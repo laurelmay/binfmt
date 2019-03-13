@@ -1,4 +1,5 @@
 wrapper_name: hswrapper
+type: E
 extension: hs
 name: haskell
 interpreter: 'ghc "$1" -odir /tmp -hidir /tmp -o /tmp/"$(basename $1 .hs)" > /dev/null && /tmp/"$(basename $1 .hs)"'

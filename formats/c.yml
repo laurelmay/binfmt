@@ -1,5 +1,12 @@
 # Self-contained c files -- must not require linking with other object files
 wrapper_name: c_binfmt
+type: E
 extension: c
 name: c
-interpreter: 'gcc -o /tmp/"$(basename $1 .c)" -O2 --std=c99 -march=native "$1" && /tmp/"$(basename $1 .c)"'
+interpreter: |
+  error() {
+    echo "$1"
+    exit
+  }
+  gcc -o /tmp/"$(basename $1 .c)" -O2 --std=c99 -march=native "$1" || error "Unable to compile"
+  /tmp/"$(basename $1 .c)" ${@:2}
